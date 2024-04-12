@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Užrašai</title>
+</head>
+
+<body>
+    <h1>Užrašai</h1>
+    <form action="/uzrasai" method="post">
+        <input type="text" name="uzrasas" placeholder="Įrašykite užrašą čia...">
+        <button type="submit">Išsaugoti</button>
+    </form>
+    <h2>Išsaugoti užrašai:</h2>
+    <ul>
+        {% for uzrasas in uzrasai %}
+        <li>{{ uzrasas }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
