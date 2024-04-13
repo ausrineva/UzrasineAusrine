@@ -1,34 +1,69 @@
+import sqlite3
 from flask import Flask, request, render_template, redirect, url_for
-from collections import defaultdict
 
 app = Flask(__name__)
 
-# Change to a dictionary with the user's name as key and a list of their notes as value
-uzrasai_atmintyje = defaultdict(list)
+DATABASE = 'notes.db'
+
+# Sukuria duomenų bazės prisijungimą
+
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# Sukuria lentelę, jei ji dar neegzistuoja
+
+
+def create_tables():
+    conn = get_db_connection()
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS notes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            note TEXT NOT NULL
+        );
+    ''')
+    conn.commit()
+    conn.close()
+
+
+create_tables()  # Užtikrina, kad lentelės būtų sukurtos prieš pradedant programą
+
+# Pagrindinis puslapis, kuris rodo užrašus ir leidžia juos įvesti
 
 
 @app.route('/', methods=['GET', 'POST'])
 def notebook():
+    conn = get_db_connection()
     if request.method == 'POST':
-        vardas = request.form.get('vardas')
-        uzrasas = request.form.get('uzrasas')
-        if vardas and uzrasas:  # Ensure that the name and the note are not empty
-            uzrasai_atmintyje[vardas].append(uzrasas)
+        name = request.form.get('vardas')
+        note = request.form.get('uzrasas')
+        if name and note:
+            conn.execute(
+                'INSERT INTO notes (name, note) VALUES (?, ?)', (name, note))
+            conn.commit()
         return redirect(url_for('notebook'))
 
-    return render_template('uzrasine.html', uzrasai=uzrasai_atmintyje)
+    notes = conn.execute('SELECT name, note FROM notes').fetchall()
+    conn.close()
+    return render_template('uzrasine.html', uzrasai=notes)
+
+# Archyvo puslapis, kuris rodo visus užrašus, išrikiuotus pagal vardą
 
 
 @app.route('/archyvas', methods=['GET', 'POST'])
 def archyvas():
     if request.method == 'POST':
-        # Redirects to the main notebook page if the form in archyvas.html is submitted
         return redirect(url_for('notebook'))
 
-    # Sort the archive by user name for GET requests
-    sorted_uzrasai = dict(sorted(uzrasai_atmintyje.items()))
-    return render_template('archyvas.html', uzrasai=sorted_uzrasai)
+    conn = get_db_connection()
+    notes = conn.execute(
+        'SELECT name, note FROM notes ORDER BY name').fetchall()
+    conn.close()
+    return render_template('archyvas.html', uzrasai=notes)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)  # Paleidžia programą su įjungtu klaidų ieškojimo režimu

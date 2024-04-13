@@ -5,14 +5,11 @@
   </head>
   <body>
     <h1>Užrašų Archyvas</h1>
-    {% for vardas, uzrasai in uzrasai.items() %}
-    <h2>{{ vardas }}</h2>
     <ul>
-      {% for uzrasas in uzrasai %}
-      <li>{{ uzrasas }}</li>
+      {% for entry in uzrasai %}
+      <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
       {% endfor %}
     </ul>
-    {% endfor %}
     <form action="/" method="get">
       <button type="submit">Grįžti į užrašinę</button>
     </form>

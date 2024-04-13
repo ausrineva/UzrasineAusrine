@@ -42,13 +42,8 @@
         </form>
         <h2>History of Notes:</h2>
         <ul>
-          {% for vardas, uzrasai in uzrasai.items() %}
-          <li><strong>{{ vardas }}</strong>:</li>
-          <ul>
-            {% for uzrasas in uzrasai %}
-            <li>{{ uzrasas }}</li>
-            {% endfor %}
-          </ul>
+          {% for entry in uzrasai %}
+          <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
           {% endfor %}
         </ul>
       </div>
