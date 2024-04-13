@@ -65,5 +65,15 @@ def archyvas():
     return render_template('archyvas.html', uzrasai=notes)
 
 
+@app.route('/user/<username>', methods=['GET'])
+def user_notes(username):
+    conn = get_db_connection()
+    user_notes = conn.execute(
+        'SELECT name, note FROM notes WHERE name = ?', (username,)
+    ).fetchall()
+    conn.close()
+    return render_template('user_notes.html', username=username, notes=user_notes)
+
+
 if __name__ == '__main__':
     app.run(debug=True)  # Paleidžia programą su įjungtu klaidų ieškojimo režimu

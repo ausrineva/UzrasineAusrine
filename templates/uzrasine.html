@@ -40,6 +40,14 @@
         <form action="/archyvas" method="get">
           <button type="submit">Archyvas</button>
         </form>
+        <ul>
+          {% for entry in uzrasai %}
+          <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
+          <a href="{{ url_for('user_notes', username=entry.name) }}"
+            >View {{ entry.name }}'s Notes</a
+          >
+          {% endfor %}
+        </ul>
         <h2>History of Notes:</h2>
         <ul>
           {% for entry in uzrasai %}

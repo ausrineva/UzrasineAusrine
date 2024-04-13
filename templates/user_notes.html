@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ username }}'s Notes</title>
+  </head>
+  <body>
+    <h1>{{ username }}'s Notes</h1>
+    <ul>
+      {% for note in notes %}
+      <li>{{ note.note }}</li>
+      {% endfor %}
+    </ul>
+    <a href="/">Return to Main Page</a>
+  </body>
+</html>
