@@ -2,6 +2,57 @@
 <html>
   <head>
     <title>Užrašų Archyvas</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Stack items vertically */
+        background: url("{{ url_for('static', filename='notebook_background.jpg.avif') }}")
+          no-repeat center center;
+        background-size: cover;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background-color: #fff; /* Add a white background for readability */
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px; /* Rounded corners */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for each list item */
+        width: 80%;
+        max-width: 600px; /* Consistent with the main page width */
+        word-wrap: break-word; /* Ensure long text wraps */
+      }
+      button {
+        background-color: #f5f5dc; /* Creamy color for the button */
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px; /* Rounded borders */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+      }
+      button:hover {
+        background-color: #ddd; /* Lighter color on hover */
+      }
+    </style>
   </head>
   <body>
     <h1>Užrašų Archyvas</h1>

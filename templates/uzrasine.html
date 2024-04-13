@@ -2,32 +2,60 @@
 <html>
   <head>
     <title>Užrašinė</title>
-    <style>
-      body,
-      html {
-        height: 100%;
-        margin: 0;
-      }
-      .notebook {
-        width: 100%;
-        height: 100%;
-        background: url("{{ url_for('static', filename='notebook_background.jpg.avif') }}")
-          no-repeat center center;
-        background-size: cover;
-        display: flex;
-        /* Add additional styling for the notebook layout here */
-      }
-      .page {
-        width: 50%; /* Adjust width as necessary */
-        padding: 1em;
-        /* Add additional styling for the page layout here */
-      }
-    </style>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("{{ url_for('static', filename='notebook_background.jpg.avif') }}") no-repeat center center;
+      background-size: cover;
+    }
+    .notebook {
+      width: 80%;
+      max-width: 600px; /* Limit the maximum width */
+      padding: 1em;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add shadow for a layered effect */
+      background: #fff; /* Add a white background for readability */
+      border-radius: 10px; /* Rounded corners */
+    }
+    .form-group {
+      margin-bottom: 10px; /* Space out form elements */
+    }
+    textarea {
+      width: calc(100% - 22px); /* Full width - padding and borders */
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #f5f5dc; /* Creamy color for the button */
+      color: black;
+      border: 2px solid black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px; /* Rounded borders */
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+      transition: all 0.3s ease; /* Smooth transition for hover effects */
+    }
+    button:hover {
+      background-color: #ddd; /* Lighter color on hover */
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+  </style>
   </head>
   <body>
     <div class="notebook">
       <div class="page">
-        <h1>User Notes</h1>
+        <h1>MANO UŽRAŠAI</h1>
         <form action="/" method="post">
           <input type="text" name="vardas" placeholder="Vardas" required />
           <textarea
@@ -43,25 +71,6 @@
         <form action="/vartotojai" method="get">
           <button type="submit">Vartotojai</button>
         </form>
-
-        <ul>
-          {% for entry in uzrasai %}
-          <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
-          <a href="{{ url_for('user_notes', username=entry.name) }}"
-            >View {{ entry.name }}'s Notes</a
-          >
-          {% endfor %}
-        </ul>
-        <h2>History of Notes:</h2>
-        <ul>
-          {% for entry in uzrasai %}
-          <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="page">
-        <!-- Additional text or content can go here -->
-      </div>
     </div>
   </body>
 </html>

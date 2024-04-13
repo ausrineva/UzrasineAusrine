@@ -2,6 +2,64 @@
 <html>
   <head>
     <title>Vartotojai</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Stack items vertically */
+        background: url("{{ url_for('static', filename='notebook_background.jpg.avif') }}")
+          no-repeat center center;
+        background-size: cover;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background-color: #fff; /* Add a white background for readability */
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px; /* Rounded corners */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for each list item */
+        width: 80%;
+        max-width: 600px; /* Consistent with the main page width */
+        text-align: center;
+      }
+      a {
+        color: black;
+        text-decoration: none;
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+      }
+      a:hover {
+        text-decoration: underline;
+        color: #555;
+      }
+      .main-page-link {
+        display: inline-block;
+        background-color: #f5f5dc; /* Creamy color for the button */
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        border-radius: 5px; /* Rounded borders */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+      }
+      .main-page-link:hover {
+        background-color: #ddd; /* Lighter color on hover */
+      }
+    </style>
   </head>
   <body>
     <h1>Vartotojai</h1>
@@ -14,6 +72,8 @@
       </li>
       {% endfor %}
     </ul>
-    <a href="/">Return to Main Page</a>
+    <form action="/" method="get">
+      <button class="main-page-link" type="submit">Grįžti į užrašinę</button>
+    </form>
   </body>
 </html>

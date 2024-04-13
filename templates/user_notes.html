@@ -2,6 +2,49 @@
 <html>
   <head>
     <title>{{ username }}'s Notes</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        background: url("{{ url_for('static', filename='notebook_background.jpg') }}")
+          no-repeat center center fixed;
+        background-size: cover;
+        font-family: "Arial", sans-serif;
+      }
+      .container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .note {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: #f5f5dc;
+        border: 1px solid #333;
+        color: #333;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+      a:hover {
+        background-color: #eaeaea;
+      }
+    </style>
   </head>
   <body>
     <h1>{{ username }}'s Notes</h1>
@@ -10,6 +53,6 @@
       <li>{{ note.note }}</li>
       {% endfor %}
     </ul>
-    <a href="/">Return to Main Page</a>
+    <a href="/">Grįžti į užrašinę</a>
   </body>
 </html>
