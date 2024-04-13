@@ -29,23 +29,31 @@
       <div class="page">
         <h1>User Notes</h1>
         <form action="/" method="post">
-          <input type="text" name="vardas" placeholder="Vardas" />
+          <input type="text" name="vardas" placeholder="Vardas" required />
           <textarea
             name="uzrasas"
             placeholder="Mielas, dienorašti..."
             required
           ></textarea>
-          <button type="submit" required>Išsaugoti</button>
+          <button type="submit">Išsaugoti</button>
+        </form>
+        <form action="/archyvas" method="get">
+          <button type="submit">Archyvas</button>
         </form>
         <h2>History of Notes:</h2>
         <ul>
-          {% for vardas, uzrasas in uzrasai %}
-          <li><strong>{{ vardas }}</strong>: {{ uzrasas }}</li>
+          {% for vardas, uzrasai in uzrasai.items() %}
+          <li><strong>{{ vardas }}</strong>:</li>
+          <ul>
+            {% for uzrasas in uzrasai %}
+            <li>{{ uzrasas }}</li>
+            {% endfor %}
+          </ul>
           {% endfor %}
         </ul>
       </div>
       <div class="page">
-        <!-- This is where additional text or content can go -->
+        <!-- Additional text or content can go here -->
       </div>
     </div>
   </body>

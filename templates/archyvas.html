@@ -13,6 +13,8 @@
       {% endfor %}
     </ul>
     {% endfor %}
-    <a href="{{ url_for('notebook') }}">Grįžti į užrašinę</a>
+    <form action="/" method="get">
+      <button type="submit">Grįžti į užrašinę</button>
+    </form>
   </body>
 </html>

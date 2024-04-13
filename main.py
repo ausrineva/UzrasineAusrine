@@ -19,9 +19,13 @@ def notebook():
     return render_template('uzrasine.html', uzrasai=uzrasai_atmintyje)
 
 
-@app.route('/archyvas', methods=['GET'])
+@app.route('/archyvas', methods=['GET', 'POST'])
 def archyvas():
-    # Sort the archive by user name
+    if request.method == 'POST':
+        # Redirects to the main notebook page if the form in archyvas.html is submitted
+        return redirect(url_for('notebook'))
+
+    # Sort the archive by user name for GET requests
     sorted_uzrasai = dict(sorted(uzrasai_atmintyje.items()))
     return render_template('archyvas.html', uzrasai=sorted_uzrasai)
 
