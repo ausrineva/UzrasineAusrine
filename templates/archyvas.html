@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Užrašų Archyvas</title>
+  </head>
+  <body>
+    <h1>Užrašų Archyvas</h1>
+    {% for vardas, uzrasai in uzrasai.items() %}
+    <h2>{{ vardas }}</h2>
+    <ul>
+      {% for uzrasas in uzrasai %}
+      <li>{{ uzrasas }}</li>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+    <a href="{{ url_for('notebook') }}">Grįžti į užrašinę</a>
+  </body>
+</html>
