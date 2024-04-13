@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vartotojai</title>
+  </head>
+  <body>
+    <h1>Vartotojai</h1>
+    <ul>
+      {% for user in users %}
+      <li>
+        <a href="{{ url_for('user_notes', username=user.name) }}"
+          >{{ user.name }}</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="/">Return to Main Page</a>
+  </body>
+</html>

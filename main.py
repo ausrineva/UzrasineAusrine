@@ -75,5 +75,13 @@ def user_notes(username):
     return render_template('user_notes.html', username=username, notes=user_notes)
 
 
+@app.route('/vartotojai')
+def vartotojai():
+    conn = get_db_connection()
+    users = conn.execute('SELECT DISTINCT name FROM notes').fetchall()
+    conn.close()
+    return render_template('vartotojai.html', users=users)
+
+
 if __name__ == '__main__':
     app.run(debug=True)  # Paleidžia programą su įjungtu klaidų ieškojimo režimu

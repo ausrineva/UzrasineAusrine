@@ -40,6 +40,10 @@
         <form action="/archyvas" method="get">
           <button type="submit">Archyvas</button>
         </form>
+        <form action="/vartotojai" method="get">
+          <button type="submit">Vartotojai</button>
+        </form>
+
         <ul>
           {% for entry in uzrasai %}
           <li><strong>{{ entry.name }}</strong>: {{ entry.note }}</li>
